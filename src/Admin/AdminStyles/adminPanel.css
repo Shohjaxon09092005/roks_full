@@ -1,0 +1,15 @@
+.app-containerAdmin {
+  display: flex;
+}
+
+.main-contentAdmin {
+  flex: 1;
+  padding: 20px;
+  margin-left: 250px;
+}
+
+@media(max-width:700px) {
+  .main-contentAdmin {
+    margin-left: 0;
+  }
+}

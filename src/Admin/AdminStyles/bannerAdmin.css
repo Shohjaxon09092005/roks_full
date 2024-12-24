@@ -1,0 +1,44 @@
+.banner_admin button {
+    padding: 5px 30px;
+    background-color: #2ecc71;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+}
+.banner_admin button:hover{
+    background-color: #58a176;
+}
+.banner_create,.banner_update{
+    margin-bottom: 20px;
+}
+.banner_admin h2{
+    font-size: 28px;
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    background-color: grey;
+    justify-content: center;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.title_banner, .desc_banner{
+    display: flex;
+    gap: 10px;
+}
+.ban_upd_btn{
+    display: flex;
+    gap: 10px;
+}
+.del_banner{
+    background-color: rgba(255, 0, 0, 0.74) !important;
+    
+}
+.del_banner:hover{
+    background-color: red !important;
+}

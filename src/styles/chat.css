@@ -1,0 +1,132 @@
+.chat-container {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 80%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+  margin-top: 150px;
+}
+
+.chat-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.chat-body {
+  padding: 10px;
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.chat-message {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 70%;
+}
+
+.chat-sender {
+  background-color: #d1e7dd; /* O'zingiz yoqtirgan rang */
+  align-self: flex-end; /* O'ngga joylashadi */
+  text-align: right; /* Matn ham o'ngga joylashadi */
+}
+
+.chat-receiver {
+  background-color: #f8d7da; /* O'zingiz yoqtirgan rang */
+  align-self: flex-start; /* Chapga joylashadi */
+  text-align: left; /* Matn ham chapga joylashadi */
+}
+
+.message-text {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.message-timestamp {
+  font-size: 12px;
+  color: gray;
+  text-align: right;
+}
+
+.chat-footer {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.chat-footer input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.chat-footer button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chat-footer button:hover {
+  background-color: #0056b3;
+}
+/* Modal oyna */
+.personal .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.personal .modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.personal .modal-content input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.personal .modal-content button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.personal .modal-content button:hover {
+  background-color: #0056b3;
+}
+
+/* Xabar matnining jo‘natuvchi nomi */
+.personal .message-sender {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}

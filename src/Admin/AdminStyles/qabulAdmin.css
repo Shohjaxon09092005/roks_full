@@ -1,0 +1,78 @@
+.qabul_admin .admin-panel {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+ .qabul_admin  h1, .qabul_admin h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+ .qabul_admin  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+ .qabul_admin  table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+ .qabul_admin  table th {
+    background-color: #f2f2f2;
+    color: #555;
+  }
+  
+ .qabul_admin  table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+ .qabul_admin  .response-btn {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+ .qabul_admin  .response-btn:hover {
+    background-color: #0056b3;
+  }
+  
+ .qabul_admin  .response-form {
+    margin-top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+ .qabul_admin  .response-form textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 14px;
+  }
+  
+  .qabul_admin .response-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+ .qabul_admin  .response-form button:hover {
+    background-color: #218838;
+  }
+  

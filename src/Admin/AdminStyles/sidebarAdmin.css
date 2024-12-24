@@ -1,0 +1,51 @@
+.sidebar_admin {
+    width: 250px;
+    background-color: rgba(228, 226, 226, 0.509);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+  }
+ .sidebar_admin .logo img {
+  width: 90%;
+  height: 100%;
+  }
+  .sidebar_admin .logo{
+    margin-bottom: 50px;
+
+  }
+ .sidebar_admin .menu {
+    list-style: none;
+    padding: 0;
+  }
+ .sidebar_admin .menu li {
+    padding: 5px 0;
+    cursor: pointer;
+    font-size: 18px;
+  }
+ .sidebar_admin .menu .ab {
+    font-weight: 500;
+    
+    color: black;
+  }
+ .sidebar_admin .active_admin{
+    color: #2ecc71; 
+    font-weight: 500;
+  }
+ .sidebar_admin .logout {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    width: 80%;
+  }
+  @media(max-width:700px){
+   .sidebar_admin{
+    transform: translateX(-3000px);
+   }
+  
+  }

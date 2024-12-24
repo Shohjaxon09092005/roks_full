@@ -1,0 +1,78 @@
+.service_card_admin {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+ .service_card_admin {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+ .service_card_admin input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+ .service_card_admin .custom-file-upload {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+ .service_card_admin .custom-file-upload:hover {
+    background-color: #0056b3;
+  }
+  
+ .service_card_admin input[type="file"] {
+    display: none; /* Standart fayl yuklash tugmasini yashirish */
+  }
+  
+ .service_card_admin #file-name {
+    font-size: 14px;
+    color: #555;
+  }
+  .btn_service{
+    padding:5px 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: #2ecc71;
+    cursor: pointer;
+    color: white;
+  }
+  .btn_service:hover{
+    background-color: green;
+  }
+  .service_card_admin h2{
+    text-align: center;
+    font-size: 30px;
+  }
+  .service_card_admin form h3{
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .btn_service_del{
+    background-color: rgba(255, 0, 0, 0.795);
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  .btn_service_del:hover{
+    background-color: red;
+  }
+  .btn_all_ser{
+    display: flex;
+    gap: 10px;
+  }

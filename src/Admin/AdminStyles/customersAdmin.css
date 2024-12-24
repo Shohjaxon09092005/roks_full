@@ -1,0 +1,99 @@
+.customers-table_admin {
+    margin-top: 20px;
+}
+
+.customers-table_admin table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.customers-table_admin th,
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+.customers-table_admin th {
+    background-color: #2ecc71;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+}
+
+.customers-table_admin tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.customers-table_admin h2{
+    margin-bottom: 30px;
+}
+.icon_customer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    height: 100%;
+}
+.icon_customer .icon_c1{
+    font-size: 22px;
+    cursor: pointer;
+}
+  .modal_admin {
+    position: fixed ;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5000 !important;
+  }
+  
+   .modal-content_admin {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+  }
+  
+  .modal-content_admin h3 {
+    margin-bottom: 15px;
+  }
+  
+  .modal-content_admin label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .modal-content_admin input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .modal-actions_admin {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .modal-actions_admin button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .modal-actions_admin button:first-child {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .modal-actions_admin button:last-child {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  

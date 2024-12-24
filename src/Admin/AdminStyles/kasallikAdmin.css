@@ -1,0 +1,116 @@
+.diseasesAdmin_card {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 20px auto;
+}
+.diseasesAdmin_card h2{
+    font-size: 30px;
+    text-align: center;
+}
+.diseasesAdmin_card .adminDiseasesWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.diseasesAdmin_card form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.diseasesAdmin_card form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.diseasesAdmin_card form button {
+    padding: 10px 15px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.diseasesAdmin_card form button:hover {
+    background-color: #45a049;
+}
+
+.diseasesAdmin_card .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.diseasesAdmin_card .card {
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+
+.diseasesAdmin_card .card h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.diseasesAdmin_card .card p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.diseasesAdmin_card .card button {
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.diseasesAdmin_card .card button:hover {
+    background-color: #d32f2f;
+}
+
+.diseasesAdmin_card .updateForm {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.diseasesAdmin_card .updateForm.open {
+    display: flex;
+}
+.diseasesAdmin_card .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    object-fit: cover;
+}

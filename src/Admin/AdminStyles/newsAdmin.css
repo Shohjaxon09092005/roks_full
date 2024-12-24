@@ -1,0 +1,126 @@
+.newsAdmin_card .adminNewsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+.adminNewsWrapper h2{
+    font-size: 30px;
+    text-align: center;
+}
+.newsAdmin_card form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+ .newsAdmin_card form input,
+form textarea,
+form button, form select {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.newsAdmin_card form input:focus,
+form textarea:focus {
+    border-color: #007bff;
+}
+
+.newsAdmin_card form button {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: none;
+}
+
+.newsAdmin_card form button:hover {
+    background-color: #0056b3;
+}
+
+.newsAdmin_card .updateForm {
+    display: none;
+}
+
+.newsAdmin_card .updateForm.open {
+    display: flex;
+}
+
+.newsAdmin_card .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.newsAdmin_card .card {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.newsAdmin_card .card h4 {
+    font-size: 18px;
+    color: #007bff;
+    margin: 0;
+}
+
+.newsAdmin_card .card p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.newsAdmin_card .card button {
+    padding: 8px 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.newsAdmin_card .card button:nth-child(2) {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.newsAdmin_card .card button:nth-child(2):hover {
+    background-color: #218838;
+}
+
+.card button:nth-child(3) {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.newsAdmin_card .card button:nth-child(3):hover {
+    background-color: #c82333;
+}
+
+/* Responsivlik */
+@media (max-width: 768px) {
+    
+   .newsAdmin_card  .card {
+        padding: 10px;
+    }
+
+   .newsAdmin_card  form input,
+    form textarea,
+    form button {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
