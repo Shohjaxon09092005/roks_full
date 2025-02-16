@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import "../styles/doctorsApp.css";
 import { NavLink } from "react-router-dom";
 import translations from "../translate/TranslationDoctorsPage";
 import { useLanguage } from "../translate/LanguageContext";
+import { URL } from "../Admin/Utils/url";
 
 function DoctorsPage() {
   const { language } = useLanguage(); // Faol tilni olish
@@ -17,34 +18,47 @@ function DoctorsPage() {
   function showLess() {
     setDoc(4);
   }
+  //GET
+  const [getDoc, setGetDoc] = useState([]);
+  useEffect(() => {
+    getDocData()
+  }, [])
+  async function getDocData() {
+    let fetchDoc = await fetch(`${URL}/doctors`);
+    let jsonDoc = await fetchDoc.json();
+    let sortedDoc = jsonDoc?.doctors?.sort((a, b) => b.id - a.id);
+    setGetDoc(sortedDoc);
+
+  }
+
 
   return (
     <section className="new-doctors-page">
       <h2 className="section-title">{t.pageTitle}</h2>
       <p className="section-description">{t.pageDescription}</p>
       <div className="new-doctors-grid">
-        {t.doctors.slice(0, doc).map((doctor) => (
-          <NavLink to={`/DoctorsAbout/${doctor.id}`} key={doctor.id}>
+        {getDoc?.slice(0, doc).map((doctor) => (
+          <NavLink to={`/DoctorsAbout/${doctor?.id}`} key={doctor?.id}>
             <div className="doctor-card">
               <img
-                src={require(`../images/doctor${doctor.id}.jpg`)}
-                alt={doctor.name}
+                src={`https://clinic-web-back.onrender.com/${doctor?.image}`}
+                alt={doctor?.full_name}
                 className="doctor-image"
               />
               <div className="doctor-info">
-                <h3 className="doctor-name">{doctor.name}</h3>
-                <p className="doctor-position">{doctor.position}</p>
-                <p className="doctor-bio">{doctor.bio}</p>
+                <h3 className="doctor-name">{doctor?.full_name}</h3>
+                <p className="doctor-position">{language==="uz"?doctor?.specialist_uz:language==="ru"?doctor?.specialist_ru:doctor?.specialist_eng}</p>
+                <p className="doctor-bio">{language==="uz"?doctor?.description_uz:language==="ru"?doctor?.description_ru:doctor?.description_eng}</p>
                 <div className="doctor-rating">
                   {Array.from(
-                    { length: Math.floor(doctor.rating) },
+                    { length: Math.floor(3.2) },
                     (_, i) => (
                       <FaStar key={i} className="star-icon" />
                     )
                   )}
-                  {doctor.rating % 1 !== 0 && <FaStar className="half-star-icon" />}
+                  {3.2 % 1 !== 0 && <FaStar className="half-star-icon" />}
                   <span className="rating-number">
-                    {doctor.rating.toFixed(1)}
+                    {3.2.toFixed(1)}
                   </span>
                 </div>
               </div>
@@ -53,7 +67,7 @@ function DoctorsPage() {
         ))}
       </div>
       <div className="doctors-buttons">
-        {doc < t.doctors.length ? (
+        {getDoc?.length > doc? (
           <button className="btn btn-primary" onClick={showMore}>
             {t.showMore}
           </button>

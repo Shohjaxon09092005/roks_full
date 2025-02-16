@@ -1,20 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/feedBack.css";
 import { FaStar } from "react-icons/fa"; // Reyting yulduzlari uchun
 import Slider from "react-slick"; // Slayder kutubxonasi
 import { useLanguage } from "../translate/LanguageContext"; // Til konteksti
 import translations from "../translate/TranslationFeedBack"; // Tarjimalar
+import { URL } from "../Admin/Utils/url";
 
 function FeedBack() {
   const { language } = useLanguage();
   const t = translations[language];
 
-  const feedbacks = [
-    { id: 1, ...t.comments[0], rating: 5 },
-    { id: 2, ...t.comments[1], rating: 4 },
-    { id: 3, ...t.comments[2], rating: 5 },
-    { id: 4, ...t.comments[3], rating: 5 },
-  ];
 
   const settings = {
     dots: true,
@@ -35,21 +30,32 @@ function FeedBack() {
       },
     ],
   };
+  //get
+  const[feed,setFeed]=useState([]);
+  useEffect(()=>{
+    fetFeed()
+  },[])
+  async function fetFeed() {
+    let fetchFeed=await fetch(`${URL}/feedback`);
+    let jsonFeed=await fetchFeed.json();
+    let sortFeed=jsonFeed?.feedback.sort((a,b)=>b.id-a.id);
+    setFeed(sortFeed)
+  }
 
   return (
     <section className="feedback-section">
       <h2 className="section-title">{t.feedbackTitle}</h2>
       <Slider {...settings}>
-        {feedbacks.map((feedback) => (
+        {feed?.map((feedback) => (
           <div className="feedback-card" key={feedback.id}>
             <div className="feedback-content">
-              <h3 className="customer-name">{feedback.name}</h3>
-              <p className="customer-comment">"{feedback.comment}"</p>
+              <h3 className="customer-name">{feedback?.name}</h3>
+              <p className="customer-comment">"{feedback?.message}"</p>
               <div className="customer-rating">
                 {[...Array(5)].map((_, index) => (
                   <FaStar
                     key={index}
-                    color={index < feedback.rating ? "#ffc107" : "#e4e5e9"}
+                    color={index < feedback?.rating ? "#ffc107" : "#e4e5e9"}
                   />
                 ))}
               </div>

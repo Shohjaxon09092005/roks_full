@@ -1,0 +1,141 @@
+.value_table {
+  width: 100%;
+  overflow-x: auto;
+  /* Horizontal scroll qo'shadi */
+}
+
+.value_table_container {
+  display: block;
+  /* Blok konteksti beradi */
+  overflow-x: auto;
+  /* Faqat o'ngga va chapga scroll qilinadi */
+  white-space: nowrap;
+  /* Jadvalning siqilib qolishini oldini oladi */
+}
+
+.value_table table {
+  width: 100%;
+  /* Jadval kengligini ota konteynerga moslaydi */
+  border-collapse: collapse;
+  /* Chegaralarni birlashtiradi */
+}
+
+.value_table th,
+td {
+  border: 1px solid #ddd;
+  /* Jadval chiziqlari */
+  padding: 8px;
+  /* Ichki bo'shliq */
+  text-align: left;
+  /* Matnni chapga hizalash */
+}
+
+.value_table thead.value_theadAdmin {
+  background-color: aquamarine;
+  /* Jadval bosh qismining rangi */
+}
+
+.value_table tr:hover {
+  background-color: rgb(232, 241, 241);
+  /* Hover effekti */
+}
+
+.font_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+
+}
+.font_icon .icon_values{
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.font_icon .icon_values:nth-of-type(1){
+  color: green;
+}
+.font_icon .icon_values:nth-of-type(1):hover{
+  color: rgb(3, 61, 3);
+}
+.font_icon .icon_values:nth-of-type(2){
+  color: rgb(235, 61, 61);
+}
+.font_icon .icon_values:nth-of-type(2):hover{
+  color: rgb(165, 10, 10);
+}
+.modal_value form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
+
+}
+/* Modal overlay (orqa fonda qoraytirish) */
+.modal_overlay_value {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  display: none;
+  overflow-y: scroll;
+
+}
+.open_modal_value{
+  display: flex;
+}
+
+/* Modal oynaning o'zi */
+.modal_value {
+  background-color: #fff;
+  border-radius: 8px;
+  max-height: 1000px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  position: absolute;
+  top: 0px;
+  animation: fadeIn 0.3s ease-in-out;
+  margin-top: 100px;
+
+
+}
+
+/* Modalning yopish tugmasi */
+.modal_close_value {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgb(226, 173, 173);
+  padding: 0 6px;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #db2020;
+  margin-bottom: 10px;
+
+}
+.modal_close_value:hover{
+  background-color: #e76969;
+}
+body{
+  
+}
+/* Animatsiya */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

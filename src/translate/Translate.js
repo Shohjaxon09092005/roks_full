@@ -1,3 +1,4 @@
+
 const translations = {
     uz: {
       home: "Bosh sahifa",
@@ -59,7 +60,7 @@ const translations = {
       searchPlaceholder: "Search...",
       clinicTitle: "ROKS.UZ Clinic",
     clinicDescription:
-      "We provide medical services with highly skilled doctors and modern equipment. Your health is important to us!",
+      "We provide medical services with highly skilled doctors and modern equipments. Your health is important to us!",
     discountTitle: "Promotion: Medical check-up - 20% discount!",
     discountDescription: "Discount valid only until November 30.",
     newServiceTitle: "New Services: Dentistry Department Opened!",

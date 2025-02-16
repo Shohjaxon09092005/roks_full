@@ -37,9 +37,9 @@
   }
   
   /* Kasalliklar ro'yxati */
-  .Kasallik .diseases-list {
+  .Kasallik .disease-card {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
     max-width: 1200px;
@@ -47,7 +47,7 @@
   }
   
   /* Kasallik kartasi */
-  .Kasallik .disease-card {
+  .Kasallik .div_map {
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -56,25 +56,25 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
-  .Kasallik .disease-card:hover {
+  .Kasallik .div_map:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
   
-  .Kasallik .disease-card img {
+  .Kasallik .div_map img {
     width: 100%;
     height: 150px;
     object-fit: cover;
   }
   
-  .Kasallik .disease-card h3 {
+  .Kasallik .div_map h3 {
     font-size: 1.5rem;
     color: #34495e;
     padding: 10px 15px 5px;
     margin: 0;
   }
   
-  .Kasallik .disease-card p {
+  .Kasallik .div_map p {
     font-size: 0.9rem;
     color: #7f8c8d;
     padding: 0 15px 10px;
@@ -82,7 +82,7 @@
     margin: 0;
   }
   
-  .Kasallik .disease-card button {
+  .Kasallik .div_map button {
     display: block;
     width: calc(100% - 30px);
     margin: 10px auto;
@@ -97,7 +97,7 @@
     transition: background 0.3s ease;
   }
   
-  .Kasallik .disease-card button:hover {
+  .Kasallik .div_map button:hover {
     background: #16a085;
   }
   
@@ -112,19 +112,19 @@
       font-size: 2rem;
     }
   
-    .Kasallik .disease-card img {
+    .Kasallik .div_map img {
       height: 120px;
     }
   
-    .Kasallik .disease-card h3 {
+    .Kasallik .div_map h3 {
       font-size: 1.2rem;
     }
   
-    .Kasallik .disease-card p {
+    .Kasallik .div_map p {
       font-size: 0.85rem;
     }
   
-    .Kasallik .disease-card button {
+    .Kasallik .div_map button {
       font-size: 0.9rem;
     }
   }

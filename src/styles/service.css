@@ -42,15 +42,17 @@ body {
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
   }
-  
+  .home .service-card {
+    height: 200px;
+  }
   .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
   
   .service-icon {
-    font-size: 2rem;
-    color: #007bff;
+    font-size: 5rem;
+    color: #00ff6a;
     margin-bottom: 10px;
   }
   

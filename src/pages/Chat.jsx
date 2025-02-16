@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { io } from "socket.io-client";
 import "../styles/chat.css";
 import translations from "../translate/Chat"; // Таржима матнларини импорт қилиш
 import { useLanguage } from "../translate/LanguageContext"; // Фаол тилни олиш
+
+const socket = io("https://clinic-web-back.onrender.com", {
+  transports: ["websocket", "polling"]
+});
+
 function Chat() {
   const { language } = useLanguage(); // Фаол тилни олиш
   const t = translations[language]; // Фаол тилга мос таржималар
@@ -23,6 +29,40 @@ function Chat() {
     }
   }, []);
 
+  // 🟢 API orqali eski xabarlarni olish
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await fetch("https://clinic-web-back.onrender.com/api/chat");
+        const data = await response.json();
+        console.log("📩 API dan kelgan xabarlar:", data);
+        setMessages(Array.isArray(data.chats) ? data.chats : []);
+      } catch (error) {
+        console.error("❌ API dan xabarlarni olishda xato:", error);
+      }
+    };
+
+    fetchMessages();
+  }, []);
+
+  // 🟢 WebSocket orqali yangi xabarlarni olish
+  useEffect(() => {
+    socket.on("chats", (chats) => {
+      console.log("📩 WebSocket orqali eski xabarlar:", chats);
+      setMessages(Array.isArray(chats) ? chats : []);
+    });
+
+    socket.on("message", (message) => {
+      console.log("📩 WebSocket orqali yangi xabar:", message);
+      setMessages((prevMessages) => [...prevMessages, message]);
+    });
+
+    return () => {
+      socket.off("chats");
+      socket.off("message");
+    };
+  }, []);
+
   const saveUserName = (e) => {
     e.preventDefault();
     if (name.trim() === "" || surname.trim() === "") return;
@@ -32,26 +72,36 @@ function Chat() {
     setShowModal(false);
   };
 
-  const sendMessage = (e) => {
+  // 🟢 Xabar yuborish funksiyasi
+  const sendMessage = async (e) => {
     e.preventDefault();
     if (input.trim() === "") return;
 
     const fullName = `${name} ${surname}`;
     const newMessage = {
-      text: input,
+      message: input.trim(), // API to‘g‘ri formatda qabul qiladi
       sender: fullName || "Anonymous",
-      timestamp: new Date().toLocaleTimeString(),
+      timestamp: new Date().toISOString(),
     };
-    setMessages([...messages, newMessage]);
 
-    setTimeout(() => {
-      const botResponse = {
-        text: "Bu boshqa foydalanuvchi javobi!",
-        sender: "Other",
-        timestamp: new Date().toLocaleTimeString(),
-      };
-      setMessages((prevMessages) => [...prevMessages, botResponse]);
-    }, 1500);
+    try {
+      // 1️⃣ WebSocket orqali xabar yuborish
+      socket.emit("sendMessage", newMessage);
+      console.log("📤 WebSocket orqali yuborildi:", newMessage);
+
+      // 2️⃣ API orqali xabar yuborish
+      const response = await fetch("https://clinic-web-back.onrender.com/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newMessage),
+      });
+      const data = await response.json();
+      console.log("📤 API orqali yuborildi:", data);
+
+      setMessages((prev) => [...prev, data]);
+    } catch (error) {
+      console.error("❌ Xabar yuborishda xato:", error);
+    }
 
     setInput("");
   };
@@ -74,9 +124,9 @@ function Chat() {
                     }`}
                   >
                     <span className="message-sender">{message.sender}</span>
-                    <span className="message-text">{message.text}</span>
+                    <span className="message-text">{message.message}</span>
                     <span className="message-timestamp">
-                      {message.timestamp}
+                      {new Date(message.timestamp).toLocaleTimeString()}
                     </span>
                   </div>
                 ))}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/home.css";
 import Service from "../components/Service";
 import Doctors from "../components/Doctors";
@@ -7,10 +7,30 @@ import { NavLink } from "react-router-dom";
 import AboutCard from "../components/AboutCard";
 import translations from "../translate/Translate"; // Tarjima matnlarini import
 import { useLanguage } from "../translate/LanguageContext"; // Tilni olish uchun
+import { URL } from "../Admin/Utils/url";
 
 function Home() {
   const { language } = useLanguage(); // Faol tilni olish
   const t = translations[language]; // Faol tilga mos tarjimalar
+  //GET 
+  const [slider, setSlider] = useState(null);
+  useEffect(() => {
+    getSlider()
+  }, [])
+  async function getSlider() {
+    let fetchSlider = await fetch(`${URL}/useful-news`);
+    let json = await fetchSlider.json();
+    const sortedSlider = json?.useful_news.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    setSlider(sortedSlider);
+
+  }
+  const sliceSlider=slider?.slice(0,4);
+  
+  //Rang o'zgarishi
+  const getBackgroundColor = (index) => {
+    const colors = ["#ff5733", "#33c1ff", "#75ff33"];
+    return colors[index % colors.length];
+  };
 
   return (
     <div className="home">
@@ -36,18 +56,20 @@ function Home() {
       <div className="home-page">
         <section className="slider-section">
           <div className="slider">
-            <div className="slide" style={{ backgroundColor: "#28a745" }}>
-              <h2>{t.discountTitle}</h2>
-              <p>{t.discountDescription}</p>
-            </div>
-            <div className="slide" style={{ backgroundColor: "#dc3545" }}>
-              <h2>{t.newServiceTitle}</h2>
-              <p>{t.newServiceDescription}</p>
-            </div>
-            <div className="slide" style={{ backgroundColor: "#343a40" }}>
-              <h2>{t.oncologyTitle}</h2>
-              <p>{t.oncologyDescription}</p>
-            </div>
+            {sliceSlider?.slice(0,3).map((item,index) => {
+              return (
+                <div key={index} className="slide" style={{ backgroundColor:getBackgroundColor(index) }}>
+                  <h2>{language === "uz" ? item.name_uz : language === "ru" ? item.name_ru : item.name_eng}</h2>
+                  <p> {language === "uz"
+                ? item.description_uz
+                : language === "ru"
+                ? item.description_ru
+                : item.description_eng}</p>
+                </div>
+              )
+            })}
+
+
           </div>
         </section>
       </div>

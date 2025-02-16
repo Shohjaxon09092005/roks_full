@@ -13,16 +13,16 @@
     margin-bottom: 20px;
 }
 .banner_admin h2{
-    font-size: 28px;
+    font-size: 22px;
     text-align: center;
     margin-top: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
     width: 100%;
-    background-color: grey;
+    background-color: #39885a;
     justify-content: center;
-    border-radius: 15px;
+    border-radius: 10px;
     color: white;
     cursor: pointer;
     margin-bottom: 20px;
@@ -41,4 +41,11 @@
 }
 .del_banner:hover{
     background-color: red !important;
+}
+.banner_admin h3{
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 20px;
+    color:#179bac;
+
 }

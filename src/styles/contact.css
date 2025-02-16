@@ -168,7 +168,6 @@
 /* Yulduzcha Reyting */
 .star-rating {
   display: flex;
-  align-items: center;
   gap: 5px;
   margin: 15px 0;
 }
@@ -185,6 +184,9 @@
 
  .star:hover {
   color: #ffa500;
+}
+.contact-section .social_icon{
+  width: 50px;
 }
 @media(max-width:420px){
   .contact-form{

@@ -1,51 +1,101 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import "../styles/diseaceFeedback.css";
+import Cookies from 'js-cookie'
+import CryptoJS from 'crypto-js'
+import { fetchTokens } from '../util/authUtil';
+import { URL } from '../Admin/Utils/url';
+import { refreshToken } from '../Admin/Utils/authRefreshToken';
+import { useParams } from "react-router-dom";
+function FeedbackDiseace({ title, placeholder, btn_submit, success, success_desc }) {
+  const [comment, setComment] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const { id } = useParams();
+  //post
+  // Update
+  const [update, forceUpdate] = useReducer(x => x + 1, 0);
+  useEffect(() => {
+  }, [update])
 
-function FeedbackDiseace({title,placeholder,btn_submit,success,success_desc,fullName,name_plc,surname_plc,save_full,del_full}) {
-   const [comment, setComment] = useState('');
-    const [submitted, setSubmitted] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-  
-    // SessionStorage dan ma'lumotni olish
-    useEffect(() => {
-      const savedName = sessionStorage.getItem('name');
-      const savedSurname = sessionStorage.getItem('surname');
-  
-      if (savedName) setName(savedName);
-      if (savedSurname) setSurname(savedSurname);
-    }, []);
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      if (!name || !surname) {
-        setIsModalOpen(true); // Ism va familiya yo'q bo'lsa, modalni ochish
-      } else {
-        submitComment();
+
+  //navigate
+
+  // Shifrlangan ma'lumotni cookie'dan olish
+  const encryptedAccessToken = Cookies.get('access_token');
+  const encryptedStoredTime = Cookies.get('stored_time');
+
+  // Ma'lumotni dekodlash
+  const decryptedAccessToken = CryptoJS.AES.decrypt(encryptedAccessToken, 'secret-key').toString(CryptoJS.enc.Utf8);
+  const decryptedStoredTime = CryptoJS.AES.decrypt(encryptedStoredTime, 'secret-key').toString(CryptoJS.enc.Utf8);
+
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!encryptedAccessToken && !encryptedStoredTime) {
+      await fetchTokens()
+
+    } else {
+      const current_time = new Date();
+      const stored_time = decryptedStoredTime;
+      const timeDiff = (current_time - new Date(stored_time)) / 60000;
+      let ready = {
+        ed_id: Number(id),
+        feedback: comment
       }
-    };
-  
-    const submitComment = () => {
-      setSubmitted(true); // Formani yuborilgan holatga o‘tkazish
-  
-      // Jo‘natilgandan keyin 3 soniyada formani qayta ochish
-      setTimeout(() => {
-        setSubmitted(false);
-        setComment('');
-      }, 3000);
-    };
-  
-    const handleModalSubmit = (e) => {
-      e.preventDefault();
-  
-      // SessionStorage-ga ism va familiyani saqlash
-      sessionStorage.setItem('name', name);
-      sessionStorage.setItem('surname', surname);
-  
-      setIsModalOpen(false); // Modalni yopish
-      submitComment(); // Fikrni jo'natish
-    };
+      if (timeDiff < 9.5) {
+        try {
+          const responceSerCom = await fetch(`${URL}/ed-feedback`, {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json',
+              "Authorization": `Bearer ${decryptedAccessToken}`,
+            },
+            body: JSON.stringify(ready)
+          });
+          if (responceSerCom.ok) {
+            const result = await responceSerCom.json();
+            forceUpdate();
+            console.log("Disease created successfully:", result);
+            submitComment();
+
+          } else if (responceSerCom.status === 401) {
+            alert("Token yaroqsiz. Login sahifasiga yo'naltirilmoqda...")
+            Cookies.remove("role");
+          } else {
+            alert("Xatolik yuz berdi:",
+              `${responceSerCom.statusText} errors, or phone number may be valid.`)
+          }
+
+
+        } catch (error) {
+          console.log("Serverga ulanishda xatolik:", error.message);
+          alert("Serverga ulanishda xatolik:", error.message)
+        }
+      } else {
+        // Tokenni yangilash
+        const newAccessToken = await refreshToken();
+        if (newAccessToken) {
+          handleSubmit(e); // Yangi token bilan qayta chaqirish
+        } else {
+          console.log("Token yangilanmadi. Login sahifasiga o'ting.");
+        }
+      }
+
+
+    }
+
+  };
+
+  const submitComment = () => {
+    setSubmitted(true); // Formani yuborilgan holatga o‘tkazish
+
+    // Jo‘natilgandan keyin 3 soniyada formani qayta ochish
+    setTimeout(() => {
+      setSubmitted(false);
+      setComment('');
+    }, 3000);
+  };
+
+
 
   return (
     <div className="disease-feedback">
@@ -67,42 +117,7 @@ function FeedbackDiseace({title,placeholder,btn_submit,success,success_desc,full
         </div>
       )}
 
-      {/* Modal */}
-      {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h3 className="modal-title">{fullName}</h3>
-            <form onSubmit={handleModalSubmit}>
-              <input
-                type="text"
-                className="modal-input"
-                placeholder={name_plc}
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-              <input
-                type="text"
-                className="modal-input"
-                placeholder={surname_plc}
-                value={surname}
-                onChange={(e) => setSurname(e.target.value)}
-                required
-              />
-              <div className="modal-buttons">
-                <button type="submit" className="modal-button">{save_full}</button>
-                <button
-                  type="button"
-                  className="modal-button modal-cancel"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  {del_full}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+
     </div>
   );
 }

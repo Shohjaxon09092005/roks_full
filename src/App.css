@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,18 +6,35 @@
     line-height: 1.5;
     scroll-behavior: smooth;
 }
-body{
+
+body {
+
     background-color: #f7f7f7;
 }
-.container{
+
+.container {
     max-width: 1640px;
     width: 100%;
     margin: 0 auto;
     padding: 0 15px;
 }
-li{
+
+li {
     list-style: none;
 }
-a{
+
+a {
     text-decoration: none;
+}
+
+.mainButton_modal {
+    margin-top: 10px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 10px;
+}
+
+.mainButton_modal:hover {
+    background-color: #1c5329;
+    cursor: pointer;
 }

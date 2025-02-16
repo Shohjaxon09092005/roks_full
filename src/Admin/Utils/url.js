@@ -1,1 +1,1 @@
-export const URL= "https://example.com/api/doctors"
+export const URL= "https://clinic-web-back.onrender.com/api"

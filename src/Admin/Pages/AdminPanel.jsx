@@ -4,6 +4,7 @@ import HeaderAdmin from '../Components/HeaderAdmin'
 import CustomersAdmin from '../Components/CustomersAdmin'
 import '../AdminStyles/adminPanel.css'
 function AdminPanel() {
+ 
   return (
     <div className="app-containerAdmin">
     <SidebarAdmin />

@@ -6,6 +6,7 @@
     flex-direction: column;
     height: 100vh;
     position: fixed;
+    overflow-y: auto;
   }
  .sidebar_admin .logo img {
   width: 90%;

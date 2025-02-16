@@ -1,149 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/servicesAbout.css';
 import { useParams } from 'react-router-dom';
 import translations from '../translate/TranslationServiesAbout'; // Tarjima matnlarini import
 import { useLanguage } from '../translate/LanguageContext'; // Til boshqaruvi
 import CommentService from '../components/CommentService';
+import { URL } from '../Admin/Utils/url';
 
 function ServicesAbout() {
   const { language } = useLanguage(); // Faol tilni olish
   const t = translations[language]; // Faol tilga mos tarjimalar
 
   // Xizmatlar ma'lumotlarini dinamik tarjima bilan aniqlash
-  const servicesData = [
-    {
-      id: 'uzi',
-      name: t.uziName, // Tarjima orqali olingan nom
-      description: t.uziDescription, // Tarjima orqali olingan tavsif
-      doctors: [t.doctorAbdulla, t.doctorMavluda, t.doctorShaxzod], // Tarjima orqali olingan shifokorlar
-      price: t.uziPrice, // Tarjima orqali olingan narx
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'neurolog',
-      name: t.neurologName,
-      description: t.neurologDescription,
-      doctors: [t.doctorJamshid, t.doctorMuhlisa],
-      price: t.neurologPrice,
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'nevropatolog',
-      name: t.uziName, // Tarjima orqali olingan nom
-      description: t.uziDescription, // Tarjima orqali olingan tavsif
-      doctors: [t.doctorAbdulla, t.doctorMavluda, t.doctorShaxzod], // Tarjima orqali olingan shifokorlar
-      price: t.uziPrice, // Tarjima orqali olingan narx
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'endokrinolog',
-      name: t.neurologName,
-      description: t.neurologDescription,
-      doctors: [t.doctorJamshid, t.doctorMuhlisa],
-      price: t.neurologPrice,
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'kardiolog',
-      name: t.uziName, // Tarjima orqali olingan nom
-      description: t.uziDescription, // Tarjima orqali olingan tavsif
-      doctors: [t.doctorAbdulla, t.doctorMavluda, t.doctorShaxzod], // Tarjima orqali olingan shifokorlar
-      price: t.uziPrice, // Tarjima orqali olingan narx
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'terapevt',
-      name: t.neurologName,
-      description: t.neurologDescription,
-      doctors: [t.doctorJamshid, t.doctorMuhlisa],
-      price: t.neurologPrice,
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'ginekolog',
-      name: t.uziName, // Tarjima orqali olingan nom
-      description: t.uziDescription, // Tarjima orqali olingan tavsif
-      doctors: [t.doctorAbdulla, t.doctorMavluda, t.doctorShaxzod], // Tarjima orqali olingan shifokorlar
-      price: t.uziPrice, // Tarjima orqali olingan narx
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'fgds',
-      name: t.neurologName,
-      description: t.neurologDescription,
-      doctors: [t.doctorJamshid, t.doctorMuhlisa],
-      price: t.neurologPrice,
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'ekg',
-      name: t.neurologName,
-      description: t.neurologDescription,
-      doctors: [t.doctorJamshid, t.doctorMuhlisa],
-      price: t.neurologPrice,
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'pediatr',
-      name: t.neurologName,
-      description: t.neurologDescription,
-      doctors: [t.doctorJamshid, t.doctorMuhlisa],
-      price: t.neurologPrice,
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'mrt',
-      name: t.neurologName,
-      description: t.neurologDescription,
-      doctors: [t.doctorJamshid, t.doctorMuhlisa],
-      price: t.neurologPrice,
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'rentgen',
-      name: t.neurologName,
-      description: t.neurologDescription,
-      doctors: [t.doctorJamshid, t.doctorMuhlisa],
-      price: t.neurologPrice,
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'laboratoriya',
-      name: t.neurologName,
-      description: t.neurologDescription,
-      doctors: [t.doctorJamshid, t.doctorMuhlisa],
-      price: t.neurologPrice,
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'travmatolog',
-      name: t.neurologName,
-      description: t.neurologDescription,
-      doctors: [t.doctorJamshid, t.doctorMuhlisa],
-      price: t.neurologPrice,
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'stomatolog',
-      name: t.neurologName,
-      description: t.neurologDescription,
-      doctors: [t.doctorJamshid, t.doctorMuhlisa],
-      price: t.neurologPrice,
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    {
-      id: 'mskt',
-      name: t.neurologName,
-      description: t.neurologDescription,
-      doctors: [t.doctorJamshid, t.doctorMuhlisa],
-      price: t.neurologPrice,
-      image: 'https://apteka.uz/upload/iblock/b32/b3283fe309691bd4565dbdd3b5f833ab.png',
-    },
-    // Boshqa xizmatlarni qo'shing
-  ];
+
+  // GET
+  const [serAbout, setSerAbout] = useState(null);
+
+  useEffect(() => {
+    getSerAbout()
+    getSer_doc()
+    getAboutDoc()
+  }, [])
+
+  async function getSerAbout() {
+    let fetchSerAbout = await fetch(`${URL}/services`);
+    let jsonSer = await fetchSerAbout.json();
+    let sortedSerAbout = jsonSer?.services;
+    setSerAbout(sortedSerAbout);
+  }
 
   const { id } = useParams(); // URL parametridan xizmat ID sini olish
-  const service = servicesData.find((service) => service.id === id);
+  const service = serAbout?.find((service) => service.id === Number(id));
+  //GET
+  const [filter, setFilter] = useState(null)
+  async function getSer_doc() {
+    let fetchFilterSer = await fetch(`${URL}/service-doctor`);
+    let jsonFilter = await fetchFilterSer.json();
+    setFilter(jsonFilter)
+
+  }
+  const filterDoc = filter?.service_doctor.filter((a) => a.service_id === service?.id)
+
+
+  //GET
+  const [docAbout, setDocAbout] = useState(null);
+  async function getAboutDoc() {
+    let fetchAboutDoc = await fetch(`${URL}/doctors`);
+    let jsonDoc = await fetchAboutDoc.json();
+    setDocAbout(jsonDoc?.doctors)
+
+  }
+  const filterDocAbout = filterDoc?.map((item) =>
+    docAbout?.find((doc) => doc?.id === item?.doctor_id)
+  )
+
+
 
   if (!service) {
     return <div>{t.serviceNotFound}</div>; // Tarjima bilan "Xizmat topilmadi"
@@ -154,21 +64,25 @@ function ServicesAbout() {
       <div className="service-details">
         <div
           className="service-image"
-          style={{ backgroundImage: `url(${service.image})` }}
+          style={{ backgroundImage: `url(https://clinic-web-back.onrender.com/${service.image})` }}
         ></div>
         <div className="service-content">
-          <h1>{service.name}</h1>
-          <p>{service.description}</p>
+          <h1>{language === "uz" ? service?.name_uz : language === "ru" ? service?.name_ru : service?.name_eng}</h1>
+          <p>{language === "uz" ? service?.description_uz : language === "ru" ? service?.description_ru : service?.description_eng}</p>
           <h3>{t.doctors}</h3>
-          <ul>
-            {service.doctors.map((doctor, index) => (
-              <li key={index}>{doctor}</li>
-            ))}
-          </ul>
-          <h4>{t.price}: {service.price}</h4>
+          {filterDocAbout?.length > 0 ? (
+            <ul>
+              {filterDocAbout.map((doctor, index) => (
+                <li key={index}>{doctor?.full_name}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>{t.noDoctorFound || "Shifokorlar yo'q"}</p>
+          )}
+          <h4>{t.price}: {service?.price} UZS</h4>
         </div>
       </div>
-      <CommentService title={t.title} placeholder={t.placeholder} btn_submit={t.btn_submit} success={t.success} success_desc={t.success_desc} fullName={t.fullName} surname_plc={t.surname_plc} name_plc={t.name_plc} save_full={t.save_full} del_full={t.del_full}/>
+      <CommentService title={t.title} placeholder={t.placeholder} btn_submit={t.btn_submit} success={t.success} success_desc={t.success_desc}  />
     </div>
   );
 }

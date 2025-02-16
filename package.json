@@ -2,6 +2,9 @@
   "name": "testreact",
   "version": "0.1.0",
   "private": true,
+  "browser": {
+    "crypto": "crypto-browserify"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.1",
     "@fortawesome/free-solid-svg-icons": "^6.7.1",
@@ -13,6 +16,11 @@
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",
     "axios": "^1.7.7",
+    "bcrypt-ts": "^5.0.3",
+    "bcryptjs": "^2.4.3",
+    "crypto-browserify": "^3.12.1",
+    "crypto-js": "^4.2.0",
+    "js-cookie": "^3.0.5",
     "motion": "^11.11.15",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -23,7 +31,9 @@
     "react-router-dom": "^6.28.0",
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.2",
+    "react-toastify": "^11.0.2",
     "slick-carousel": "^1.8.1",
+    "socket.io-client": "^4.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

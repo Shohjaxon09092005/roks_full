@@ -30,6 +30,14 @@ import NewsAdmin from './Admin/Pages/NewsAdmin';
 import KasallikAdmin from './Admin/Pages/KasallikAdmin';
 import ContactAdmin from './Admin/Pages/ContactAdmin';
 import QabulAdmin from './Admin/Pages/QabulAdmin';
+import ServiceDoctor from './Admin/Pages/ServiceDoctor';
+import KasallikFeed from './Admin/Pages/KasallikFeed';
+import ServiceFeed from './Admin/Pages/ServiceFeed';
+import DoctorFeed from './Admin/Pages/DoctorFeed';
+import NewsFeed from './Admin/Pages/NewsFeed';
+import FeedbackHome from './Admin/Pages/FeedbackHome';
+import ContactAdminFeed from './Admin/Pages/ContactAdminFeed';
+import ProtectedRoute from './Admin/Utils/ProtectedRoute';
 const appRouter = createBrowserRouter([{
   element: <App />,
   path: "/",
@@ -114,7 +122,7 @@ const appRouter = createBrowserRouter([{
 },
 {
   path: "/admin-panel",
-  element: <AdminPanel />
+  element: <ProtectedRoute element={<AdminPanel />} />,
 },
 {
   path: "/home_admin",
@@ -125,24 +133,52 @@ const appRouter = createBrowserRouter([{
   element: <ServiceAdmin />
 },
 {
+  path: "/serviceFeed_admin",
+  element: <ServiceFeed />
+},
+{
   path: "/doctor_admin",
   element: <DoctorAdmin/>
+},
+{
+  path: "/doctorFeed_admin",
+  element: <DoctorFeed/>
+},
+{
+  path: "/service_doctor",
+  element: <ServiceDoctor/>
 },
 {
   path: "/news_admin",
   element: <NewsAdmin/>
 },
 {
+  path: "/newsFeed_admin",
+  element: <NewsFeed/>
+},
+{
   path: "/kasallik_admin",
   element: <KasallikAdmin/>
 },
 {
-  path: "/contact_admin",
+  path: "/kasallikFeed_admin",
+  element: <KasallikFeed/>
+},
+{
+  path: "/social_admin",
   element: <ContactAdmin/>
 },
 {
   path: "/qabul_admin",
   element: <QabulAdmin/>
+},
+{
+  path: "/feedback_admin",
+  element: <FeedbackHome/>
+},
+{
+  path: "/contactFeed_admin",
+  element: <ContactAdminFeed/>
 },
 ])
 

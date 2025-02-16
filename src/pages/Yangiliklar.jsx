@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/yangiliklar.css';
 import { NavLink } from 'react-router-dom';
 import { useLanguage } from '../translate/LanguageContext';
 import translations from '../translate/TranslationNews'; // Tarjima faylini import qilish
+import { URL } from '../Admin/Utils/url';
 
 function Yangiliklar() {
   const { language } = useLanguage(); // Faol tilni olish
@@ -18,8 +19,17 @@ function Yangiliklar() {
     setVisibleNews(3); // Ko'rinadigan yangiliklar sonini 3 ga kamaytirish
   };
 
-  const newsData = t?.allNews || []; // `t.allNews` bo'lmasa bo'sh massiv
-
+  //get 
+  const [newsGet, setNewsGet] = useState([])
+  useEffect(()=>{
+    getNews()
+  },[])
+  async function getNews(){
+    let fetchGetNews=await fetch(`${URL}/news`);
+    let jsonNews=await fetchGetNews.json();
+    let sortedNews=jsonNews?.news?.sort((a,b)=>b.id-a.id);
+    setNewsGet(sortedNews)
+  }
   return (
     <div className="yangiliklar">
       <section className="news-section">
@@ -27,23 +37,22 @@ function Yangiliklar() {
           <h2 className="section-title">{t.newsTitle}</h2>
           <p className="section-description">{t.newsDescription}</p>
           <div className="news-grid">
-            {newsData.slice(0, visibleNews).map((news) => (
-              <NavLink to={`/newsAbout/${news.id}`} key={news.id}>
+            {newsGet.slice(0, visibleNews).map((news) => (
+              <NavLink to={`/newsAbout/${news?.id}`} key={news?.id}>
                 <div className="news-card">
-                  <img src={news.image} alt={news.title} className="news-image" />
+                  <img src={`https://clinic-web-back.onrender.com/${news?.image}`} alt={news?.name_uz} className="news-image" />
                   <div className="news-content">
-                    <h3 className="news-title">{news.title}</h3>
-                    <p className="news-description">{news.description}</p>
+                    <h3 className="news-title">{language==="uz"?news?.name_uz:language==="ru"?news?.name_ru:news?.name_eng}</h3>
+                    <p className="news-description">{language==="uz"?news?.description_uz.slice(0,40):language==="ru"?news?.description_ru.slice(0,40):news?.description_eng.slice(0,40)}</p>
                     <div className="news-meta">
-                      <span className="news-category">{news.category}</span>
-                      <span className="news-date">{news.date}</span>
+                      <span className="news-date">{news?.date}</span>
                     </div>
                   </div>
                 </div>
               </NavLink>
             ))}
           </div>
-          {visibleNews < newsData.length ? (
+          {visibleNews < newsGet?.length ? (
             <button className="load-more-btn" onClick={handleLoadMore}>
               {t.showMore}
             </button>

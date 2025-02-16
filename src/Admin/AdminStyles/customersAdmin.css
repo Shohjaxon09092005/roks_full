@@ -96,4 +96,16 @@ td {
     background-color: #dc3545;
     color: #fff;
   }
-  
+  .admin_role{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .admin_role button{
+    width: 100%;
+    background-color: #28a745;
+    cursor: pointer;
+  }
+  .admin_role button:hover{
+    background-color: #31794f;
+  }
